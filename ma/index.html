@@ -8,12 +8,144 @@
 
 
 <body style="background-color:#CCC;">
+<div style="height: 10px;"></div>
+<div class="player">
+        <audio controls="controls" id="mianAudio">
+                <source src="https://listen.729ly.net:8001/ly729_a" type="audio/mp3">
+        </audio>
+</div>
+<div style="height: 10px;"></div>
 
-<iframe id="embed_player" src="https://ly729.airtime.pro/embed/player?stream=s1&skin=2" width="420" height="396" frameborder="0"></iframe>
-        <p>
-                <input type="button" name="Button" value="Button" onclick="embed_player.window.location.reload()">
-        </p>
+<div >
+        
+        <div style="float: left;">
+                <button id="mianAudio" class="mianAudio play" onclick="play()"> </button>
+        </div>
 
+        <div style="float:right;">
+                <button id="mianAudio" class="mianAudio pause" onclick="pause()"> </button>
+        </div>
+</div>
+<div style="clear: both; height: 20px;"></div>
+        <div style="float: left;">
+            <button  onclick="decreaseVolume()" style="height:74px;width: 74px; font-size: 60px;">-</button>
+        </div>
+
+        <div style="float:right;">
+            <button  onclick="increaseVolume()"  style="height:74px;width: 74px; font-size: 60px;">+</button>
+        </div>
+<div style="clear: both; height: 20px"></div>
+
+<button  onclick="setSrc('https://ly729.out.airtime.pro/ly729_a')"  >Src1</button>
+<button  onclick="setSrc('https://c20.radioboss.fm/stream/572')"  >Src2</button>
+<button  onclick="setSrc('https://listen.729ly.net:8001/ly729_a')"  >Src3</button>
+<div style="clear: both; height: 20px"></div>
+
+<p id="audioStatus">wait</p>
+<p id="audioSrc">...</p>
+<p id="audioVolume">...</p>
+<script>
+        const audio = document.getElementById('mianAudio');
+        const audioStatus = document.getElementById('audioStatus');
+        const audioSrc = document.getElementById('audioSrc');
+        const audioVolume = document.getElementById('audioVolume');
+        function play()
+        {
+                audio.play();
+                audioStatus.textContent = 'playing';
+
+        }
+        function pause()
+        {
+                audio.pause();
+                audioStatus.textContent = 'pause';
+
+        }
+        function increaseVolume() {
+            if (audio.volume < 1) {
+                audio.volume += 0.1;
+                audioVolume.textContent = 'Volume: ' + Math.round(audio.volume * 10);
+            }
+        }
+        function decreaseVolume() {
+            if (audio.volume > 0) {
+                audio.volume -= 0.1;
+                audioVolume.textContent = 'Volume: ' + Math.round(audio.volume * 10);
+            }
+        }
+        // 从 Cookie 中获取上次保存的音频地址
+        function getSavedAudioSource() {
+            var audioSrc = getCookie("audioSrc");
+            if (audioSrc) {
+                //audio.src = audioSrc;
+                audio.getElementsByTagName('source')[0].src = audioSrc;
+                audioSrc.textContent = 'Source: ' + audioSrc;
+            }
+        }
+        getSavedAudioSource();
+
+        //修改原地址
+        function setSrc(url){
+                audioSrc.textContent = 'Source: ' + url;
+                pause();
+                audio.getElementsByTagName('source')[0].src = url;
+                setCookie("audioSrc", audio.src, 30); 
+                play();
+        }
+        // 设置 Cookie
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        // 获取 Cookie
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+
+
+</script>
+
+<style>
+
+.mianButton{
+    padding: 0;
+    background-color: white;
+    box-sizing: border-box;
+}
+.play{
+    width: 100px;
+    height: 100px;
+    border-style: solid;
+    border-width: 50px 0 50px 80px;
+    border-color: transparent transparent transparent black;
+    transition: all .5s ease;
+}
+.pause{
+    width: 100px;
+    height: 100px;
+    border-style: double;
+    border-width: 0px 0px 0px 100px;
+    border-color: #202020;
+}
+
+
+</style>
 
 
 
