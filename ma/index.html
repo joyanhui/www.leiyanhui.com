@@ -9,7 +9,7 @@
 
 <body style="background-color:#CCC;">
 <div style="height: 10px;"></div>
-<div class="player">
+<div id="playerDiv">in
         <audio controls="controls" id="mianAudio">
                 <source src="https://listen.729ly.net:8001/ly729_a" type="audio/mp3">
         </audio>
@@ -47,50 +47,73 @@
 
 <br/><br/><br/><br/>
 <center>
-        <button onclick="location.reload()"  style="height:50px;width: 150px; font-size: 40px;">Reload</button>
+        <button onclick="relodAudio()"  style="height:50px;width: 150px; font-size: 40px;">Reload</button>
 </center>
 <script>
-        const audio = document.getElementById('mianAudio');
+        const playerDiv = document.getElementById('playerDiv');
         const audioStatus = document.getElementById('audioStatus');
         const audioSrc = document.getElementById('audioSrc');
         const audioVolume = document.getElementById('audioVolume');
+        function relodAudio(){
+                const audio = document.getElementById('mianAudio');
+                audio.pause();
+                //销毁重建
+                audio.load();
+                audio.parentNode.removeChild(audio);
+                var audioSrc = getCookie("audioSrc");
+                playerDiv.innerHTML=""
+                if (!audioSrc) {
+                       audioSrc="https://ly729.out.airtime.pro/ly729_a"
+                }
+               playerDiv.innerHTML = 're<audio controls="controls" id="mianAudio"><source src="https://listen.729ly.net:8001/ly729_a" type="audio/mp3"></audio>';
+
+        }
         function play()
         {
+                const audio = document.getElementById('mianAudio');
                 audio.play();
                 audioStatus.textContent = 'playing';
 
         }
         function pause()
         {
+                const audio = document.getElementById('mianAudio');
                 audio.pause();
                 audioStatus.textContent = 'pause';
 
         }
         function increaseVolume() {
-            if (audio.volume < 1) {
-                audio.volume += 0.1;
-                audioVolume.textContent = 'Volume: ' + Math.round(audio.volume * 10);
-            }
+                const audio = document.getElementById('mianAudio');
+                if (audio.volume < 1) {
+                        audio.volume += 0.1;
+                        audioVolume.textContent = 'Volume: ' + Math.round(audio.volume * 10);
+                }
         }
         function decreaseVolume() {
-            if (audio.volume > 0) {
-                audio.volume -= 0.1;
-                audioVolume.textContent = 'Volume: ' + Math.round(audio.volume * 10);
-            }
+                const audio = document.getElementById('mianAudio');
+                if (audio.volume > 0.3) {
+                        audio.volume -= 0.1;
+                        audioVolume.textContent = 'Volume: ' + Math.round(audio.volume * 10);
+                }else{
+                        audio.volume = 0.2;
+                        audioVolume.textContent = 'Volume: ' + Math.round(audio.volume * 10);
+
+                }
         }
         // 从 Cookie 中获取上次保存的音频地址
         function getSavedAudioSource() {
-            var audioSrc = getCookie("audioSrc");
-            if (audioSrc) {
-                //audio.src = audioSrc;
-                audio.getElementsByTagName('source')[0].src = audioSrc;
-                audioSrc.textContent = 'Source: ' + audioSrc;
-            }
+                const audio = document.getElementById('mianAudio');
+                var audioSrc = getCookie("audioSrc");
+                if (audioSrc) {
+                        audio.getElementsByTagName('source')[0].src = audioSrc;
+                        audioSrc.textContent = 'Source: ' + audioSrc;
+                }
         }
         getSavedAudioSource();
 
         //修改原地址
         function setSrc(url){
+                const audio = document.getElementById('mianAudio');
                 audioSrc.textContent = 'Source: ' + url;
                 pause();
                 audio.getElementsByTagName('source')[0].src = url;
