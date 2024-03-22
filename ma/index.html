@@ -89,7 +89,7 @@
                 audioSrc.textContent = 'Source: ' + url;
                 pause();
                 audio.getElementsByTagName('source')[0].src = url;
-                setCookie("audioSrc", audio.src, 30); 
+                setCookie("audioSrc", url, 30); 
                 play();
         }
         // 设置 Cookie
