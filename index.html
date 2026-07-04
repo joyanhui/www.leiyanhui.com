@@ -1,209 +1,358 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>恢恢小屋 - 小类的个人网站</title>
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { height: 100%; overflow: hidden; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
+          "Microsoft YaHei", sans-serif;
+        padding: 20px;
+        background: #0a0a1a;
+        position: relative;
+      }
+
+      .bg-svg {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .card {
+        position: relative;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-radius: 28px;
+        padding: 48px 44px 36px;
+        max-width: 420px;
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 30px 60px -16px rgba(0, 0, 0, 0.6);
+        text-align: center;
+      }
+
+      .divider-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 28px 0;
+      }
+      .divider-top::before,
+      .divider-top::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(255, 255, 255, 0.12),
+          transparent
+        );
+      }
+      .divider-top span {
+        color: rgba(255, 255, 255, 0.2);
+        font-size: 10px;
+        letter-spacing: 4px;
+        white-space: nowrap;
+      }
+
+      h1 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: 1px;
+      }
+
+      .main-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 36px;
+        border-radius: 60px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+        border: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(108, 92, 231, 0.25);
+        margin-bottom: 8px;
+      }
+      .main-link:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 32px rgba(108, 92, 231, 0.4);
+      }
+      .main-link:active {
+        transform: scale(0.97);
+      }
+
+      .tagline {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.2);
+        letter-spacing: 2px;
+        margin-bottom: 28px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .tagline::before,
+      .tagline::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(255, 255, 255, 0.08),
+          transparent
+        );
+      }
+
+      .footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .footer a {
+        color: rgba(255, 255, 255, 0.25);
+        text-decoration: none;
+        font-size: 12px;
+        transition: color 0.2s ease;
+      }
+      .footer a:hover {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      @media (max-width: 480px) {
         body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
-            padding: 20px;
-            background: #0a0a1a;
-            position: relative;
+          padding: 12px;
         }
-
-        .bg-svg {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
         .card {
-            position: relative;
-            z-index: 1;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-radius: 28px;
-            padding: 48px 44px 36px;
-            max-width: 420px;
-            width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 30px 60px -16px rgba(0, 0, 0, 0.6);
-            text-align: center;
+          padding: 36px 24px 28px;
+          border-radius: 22px;
         }
-
-        .divider-top {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 28px 0;
-        }
-        .divider-top::before,
-        .divider-top::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent);
-        }
-        .divider-top span {
-            color: rgba(255,255,255,0.2);
-            font-size: 10px;
-            letter-spacing: 4px;
-            white-space: nowrap;
-        }
-
         h1 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #fff;
-            letter-spacing: 1px;
+          font-size: 20px;
         }
-
         .main-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 36px;
-            border-radius: 60px;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            color: #fff;
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-            border: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.25);
-            margin-bottom: 8px;
+          padding: 12px 28px;
+          font-size: 14px;
         }
-        .main-link:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 8px 32px rgba(108, 92, 231, 0.4);
-        }
-        .main-link:active { transform: scale(0.97); }
-
-        .tagline {
-            font-size: 12px;
-            color: rgba(255,255,255,0.2);
-            letter-spacing: 2px;
-            margin-bottom: 28px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        .tagline::before,
-        .tagline::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
-        }
-
-        .footer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-        }
-        .footer a {
-            color: rgba(255,255,255,0.25);
-            text-decoration: none;
-            font-size: 12px;
-            transition: color 0.2s ease;
-        }
-        .footer a:hover { color: rgba(255,255,255,0.6); }
-
-        @media (max-width: 480px) {
-            body { padding: 12px; }
-            .card { padding: 36px 24px 28px; border-radius: 22px; }
-            h1 { font-size: 20px; }
-            .main-link { padding: 12px 28px; font-size: 14px; }
-        }
+      }
     </style>
-</head>
-<body>
-    <svg class="bg-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <filter id="blur1"><feGaussianBlur stdDeviation="80" /></filter>
-            <filter id="blur2"><feGaussianBlur stdDeviation="60" /></filter>
-            <filter id="blur3"><feGaussianBlur stdDeviation="100" /></filter>
-            <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#6c5ce7" stop-opacity="0.4" />
-                <stop offset="100%" stop-color="#a29bfe" stop-opacity="0.1" />
-            </linearGradient>
-            <linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#fd79a8" stop-opacity="0.3" />
-                <stop offset="100%" stop-color="#e17055" stop-opacity="0.05" />
-            </linearGradient>
-            <linearGradient id="g3" x1="50%" y1="0%" x2="50%" y2="100%">
-                <stop offset="0%" stop-color="#00cec9" stop-opacity="0.25" />
-                <stop offset="100%" stop-color="#0984e3" stop-opacity="0.05" />
-            </linearGradient>
-        </defs>
+  </head>
+  <body>
+    <svg
+      class="bg-svg"
+      viewBox="0 0 1440 900"
+      preserveAspectRatio="xMidYMid slice"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <filter id="blur1"><feGaussianBlur stdDeviation="80" /></filter>
+        <filter id="blur2"><feGaussianBlur stdDeviation="60" /></filter>
+        <filter id="blur3"><feGaussianBlur stdDeviation="100" /></filter>
+        <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#6c5ce7" stop-opacity="0.4" />
+          <stop offset="100%" stop-color="#a29bfe" stop-opacity="0.1" />
+        </linearGradient>
+        <linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#fd79a8" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="#e17055" stop-opacity="0.05" />
+        </linearGradient>
+        <linearGradient id="g3" x1="50%" y1="0%" x2="50%" y2="100%">
+          <stop offset="0%" stop-color="#00cec9" stop-opacity="0.25" />
+          <stop offset="100%" stop-color="#0984e3" stop-opacity="0.05" />
+        </linearGradient>
+      </defs>
 
-        <ellipse cx="300" cy="200" rx="400" ry="400" fill="url(#g1)" filter="url(#blur1)">
-            <animateTransform attributeName="transform" type="translate" values="0,0;80,-60;0,0" dur="20s" repeatCount="indefinite" />
-        </ellipse>
-        <ellipse cx="1100" cy="650" rx="350" ry="350" fill="url(#g2)" filter="url(#blur2)">
-            <animateTransform attributeName="transform" type="translate" values="0,0;-60,80;0,0" dur="25s" repeatCount="indefinite" />
-        </ellipse>
-        <ellipse cx="720" cy="450" rx="500" ry="300" fill="url(#g3)" filter="url(#blur3)">
-            <animateTransform attributeName="transform" type="translate" values="0,0;40,60;0,0" dur="30s" repeatCount="indefinite" />
-        </ellipse>
+      <ellipse
+        cx="300"
+        cy="200"
+        rx="400"
+        ry="400"
+        fill="url(#g1)"
+        filter="url(#blur1)"
+      >
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          values="0,0;80,-60;0,0"
+          dur="20s"
+          repeatCount="indefinite"
+        />
+      </ellipse>
+      <ellipse
+        cx="1100"
+        cy="650"
+        rx="350"
+        ry="350"
+        fill="url(#g2)"
+        filter="url(#blur2)"
+      >
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          values="0,0;-60,80;0,0"
+          dur="25s"
+          repeatCount="indefinite"
+        />
+      </ellipse>
+      <ellipse
+        cx="720"
+        cy="450"
+        rx="500"
+        ry="300"
+        fill="url(#g3)"
+        filter="url(#blur3)"
+      >
+        <animateTransform
+          attributeName="transform"
+          type="translate"
+          values="0,0;40,60;0,0"
+          dur="30s"
+          repeatCount="indefinite"
+        />
+      </ellipse>
 
-        <circle cx="200" cy="150" r="3" fill="rgba(255,255,255,0.4)">
-            <animate attributeName="cy" values="150;130;150" dur="6s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.4;0.8;0.4" dur="6s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="500" cy="100" r="2" fill="rgba(255,255,255,0.3)">
-            <animate attributeName="cy" values="100;80;100" dur="8s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.3;0.7;0.3" dur="8s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="900" cy="200" r="2.5" fill="rgba(255,255,255,0.35)">
-            <animate attributeName="cy" values="200;170;200" dur="7s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.35;0.75;0.35" dur="7s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="1200" cy="120" r="2" fill="rgba(255,255,255,0.3)">
-            <animate attributeName="cy" values="120;100;120" dur="9s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.3;0.6;0.3" dur="9s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="350" cy="700" r="2.5" fill="rgba(255,255,255,0.25)">
-            <animate attributeName="cy" values="700;720;700" dur="7.5s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.25;0.55;0.25" dur="7.5s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="1100" cy="750" r="3" fill="rgba(255,255,255,0.3)">
-            <animate attributeName="cy" values="750;770;750" dur="8.5s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.3;0.65;0.3" dur="8.5s" repeatCount="indefinite" />
-        </circle>
+      <circle cx="200" cy="150" r="3" fill="rgba(255,255,255,0.4)">
+        <animate
+          attributeName="cy"
+          values="150;130;150"
+          dur="6s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.4;0.8;0.4"
+          dur="6s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle cx="500" cy="100" r="2" fill="rgba(255,255,255,0.3)">
+        <animate
+          attributeName="cy"
+          values="100;80;100"
+          dur="8s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.3;0.7;0.3"
+          dur="8s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle cx="900" cy="200" r="2.5" fill="rgba(255,255,255,0.35)">
+        <animate
+          attributeName="cy"
+          values="200;170;200"
+          dur="7s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.35;0.75;0.35"
+          dur="7s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle cx="1200" cy="120" r="2" fill="rgba(255,255,255,0.3)">
+        <animate
+          attributeName="cy"
+          values="120;100;120"
+          dur="9s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.3;0.6;0.3"
+          dur="9s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle cx="350" cy="700" r="2.5" fill="rgba(255,255,255,0.25)">
+        <animate
+          attributeName="cy"
+          values="700;720;700"
+          dur="7.5s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.25;0.55;0.25"
+          dur="7.5s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle cx="1100" cy="750" r="3" fill="rgba(255,255,255,0.3)">
+        <animate
+          attributeName="cy"
+          values="750;770;750"
+          dur="8.5s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.3;0.65;0.3"
+          dur="8.5s"
+          repeatCount="indefinite"
+        />
+      </circle>
     </svg>
 
     <div class="card">
-        <h1>你闻讯而来，我大喜过望</h1>
+      <h1>你闻讯而来，我大喜过望</h1>
 
-        <div class="divider-top"><span>✦</span></div>
+      <div class="divider-top"><span>www.leiyanhui.com</span></div>
 
-        <a href="https://dev.leiyanhui.com/" target="_blank" class="main-link">
-            小类随手记 ↗
-        </a>
+      <a href="https://dev.leiyanhui.com/" target="_blank" class="main-link">
+        小类随手记 ↗
+      </a>
 
-        <div class="tagline">
-            <span>止于此，始于斯</span>
-        </div>
+      <div class="tagline">
+        <span>止于此，始于斯</span>
+      </div>
 
-        <div class="footer">
-            <a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备11015692号-9</a>
-            <a href="https://github.com/joyanhui/www.leiyanhui.com/edit/main/index.html" target="_blank">edit this pages</a>
-        </div>
+      <div class="footer">
+        <a href="https://beian.miit.gov.cn/" target="_blank"
+          >鲁ICP备11015692号-9</a
+        >
+        <a
+          href="https://github.com/joyanhui/www.leiyanhui.com/edit/main/index.html"
+          target="_blank"
+          >edit this pages</a
+        >
+      </div>
     </div>
-</body>
+  </body>
 </html>
