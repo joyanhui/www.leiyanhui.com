@@ -33,28 +33,32 @@
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border-radius: 28px;
-            padding: 52px 44px 40px;
-            max-width: 440px;
+            padding: 48px 44px 36px;
+            max-width: 420px;
             width: 100%;
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 30px 60px -16px rgba(0, 0, 0, 0.6);
             text-align: center;
         }
 
-        .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-            margin: 0 auto 20px;
+        .divider-top {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            color: #fff;
-            font-weight: 700;
-            box-shadow: 0 8px 32px rgba(108, 92, 231, 0.3);
-            user-select: none;
+            gap: 12px;
+            margin: 28px 0;
+        }
+        .divider-top::before,
+        .divider-top::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent);
+        }
+        .divider-top span {
+            color: rgba(255,255,255,0.2);
+            font-size: 10px;
+            letter-spacing: 4px;
+            white-space: nowrap;
         }
 
         h1 {
@@ -62,7 +66,6 @@
             font-weight: 600;
             color: #fff;
             letter-spacing: 1px;
-            margin-bottom: 4px;
         }
 
         .main-link {
@@ -79,7 +82,7 @@
             border: none;
             transition: all 0.3s ease;
             box-shadow: 0 4px 20px rgba(108, 92, 231, 0.25);
-            margin-bottom: 36px;
+            margin-bottom: 8px;
         }
         .main-link:hover {
             transform: translateY(-2px) scale(1.02);
@@ -89,7 +92,7 @@
 
         .tagline {
             font-size: 12px;
-            color: rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.2);
             letter-spacing: 2px;
             margin-bottom: 28px;
             position: relative;
@@ -124,7 +127,6 @@
             .card { padding: 36px 24px 28px; border-radius: 22px; }
             h1 { font-size: 20px; }
             .main-link { padding: 12px 28px; font-size: 14px; }
-            .avatar { width: 64px; height: 64px; font-size: 26px; }
         }
     </style>
 </head>
@@ -185,8 +187,10 @@
     </svg>
 
     <div class="card">
-        <div class="avatar">H</div>
         <h1>你闻讯而来，我大喜过望</h1>
+
+        <div class="divider-top"><span>✦</span></div>
+
         <a href="https://dev.leiyanhui.com/" target="_blank" class="main-link">
             小类随手记 ↗
         </a>
