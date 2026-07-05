@@ -136,6 +136,27 @@
         );
       }
 
+      .links-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 20px 0;
+      }
+      .links-row a {
+        color: rgba(255, 255, 255, 0.35);
+        text-decoration: none;
+        font-size: 12px;
+        transition: color 0.2s ease;
+      }
+      .links-row a:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .dot {
+        color: rgba(255, 255, 255, 0.15);
+        font-size: 12px;
+      }
+
       .footer {
         display: flex;
         flex-direction: column;
@@ -341,6 +362,14 @@
 
       <div class="tagline">
         <span>止于此，始于斯</span>
+      </div>
+
+      <div class="links-row">
+        <a href="https://t.leiyanhui.com/" target="_blank">短链接</a>
+        <span class="dot">·</span>
+        <a href="https://kv.leiyanhui.com/" target="_blank">KV 储存</a>
+        <span class="dot">·</span>
+        <a href="https://mailsender.leiyanhui.com/" target="_blank">邮件 API</a>
       </div>
 
       <div class="footer">
