@@ -668,7 +668,7 @@ ul.nav {
     content: "";
     width: 100%;
     height: 100%;
-    background-image: url(../assets//images/dark.png);
+    background-image: url(../assets/images/dark.png);
     background-size: 100% 100%;
     z-index: -1;
     opacity: 0.2;
@@ -2767,7 +2767,7 @@ ul.nav {
     content: "";
     width: 100%;
     height: 100%;
-    background-image: url(../assets//images/dark.png);
+    background-image: url(../assets/images/dark.png);
     background-size: 100% 100%;
     z-index: -1;
     opacity: 0.2;
