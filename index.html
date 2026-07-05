@@ -7,6 +7,15 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="./css/index.css" as="style" />
+    <link rel="preload" href="./js/TweenLite.js" as="script" />
+    <link rel="preload" href="./js/three.r112.js" as="script" />
+    <link rel="preload" href="./js/index.js" as="script" />
+    <link rel="preload" href="./js/disable-devtool.js" as="script" />
+    <link rel="prefetch" href="./assets/images/mbanner1.webp" as="image" />
+    <link rel="prefetch" href="./assets/images/mbanner2.webp" as="image" />
+    <link rel="prefetch" href="./assets/images/mbanner3.webp" as="image" />
+    <link rel="prefetch" href="./assets/images/mbanner4.webp" as="image" />
     <title>恢恢小屋 - 小类的个人网站</title>
     <style>
       *,
@@ -357,7 +366,7 @@
       <div class="divider-top"><span>www.leiyanhui.com</span></div>
 
       <a href="https://dev.leiyanhui.com/" target="_blank" class="main-link">
-        小类随手记 ↗
+        随手记 ↗
       </a>
 
       <div class="tagline">
@@ -370,6 +379,10 @@
         <a href="https://kv.leiyanhui.com/" target="_blank">KV 储存</a>
         <span class="dot">·</span>
         <a href="https://mailsender.leiyanhui.com/" target="_blank">邮件 API</a>
+        <span class="dot">·</span>
+        <a href="https://fileuni.com/" target="_blank">FileUni</a>
+        <span class="dot">·</span>
+        <a href="https://hello.leiyanhui.com/" target="_blank">加速器</a>
       </div>
 
       <div class="footer">
@@ -383,5 +396,122 @@
         >
       </div>
     </div>
+
+    <div id="update-modal" class="modal-overlay">
+      <div class="modal-card">
+        <h2>🎉 新版本已上线</h2>
+        <p>全新的交互体验，更炫酷的视觉效果，<br />来试试看吧！</p>
+        <div class="modal-actions">
+          <button class="modal-btn modal-btn-primary" id="modal-confirm">去看看</button>
+          <button class="modal-btn modal-btn-cancel" id="modal-cancel">先看看这个</button>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+      }
+      .modal-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .modal-card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-radius: 24px;
+        padding: 40px 36px 32px;
+        max-width: 380px;
+        width: 90%;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 30px 60px -16px rgba(0, 0, 0, 0.6);
+        text-align: center;
+        transform: translateY(20px) scale(0.96);
+        transition: transform 0.4s ease;
+      }
+      .modal-overlay.active .modal-card {
+        transform: translateY(0) scale(1);
+      }
+      .modal-card h2 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 16px;
+      }
+      .modal-card p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.7;
+        margin-bottom: 28px;
+      }
+      .modal-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .modal-btn {
+        padding: 12px 0;
+        border-radius: 60px;
+        font-size: 15px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+      .modal-btn-primary {
+        color: #fff;
+        background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+        box-shadow: 0 4px 20px rgba(108, 92, 231, 0.25);
+      }
+      .modal-btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 32px rgba(108, 92, 231, 0.4);
+      }
+      .modal-btn-cancel {
+        color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .modal-btn-cancel:hover {
+        color: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.1);
+      }
+      @media (max-width: 480px) {
+        .modal-card {
+          padding: 32px 24px 28px;
+        }
+      }
+    </style>
+
+    <script>
+      (function () {
+        var modal = document.getElementById('update-modal');
+        var confirmBtn = document.getElementById('modal-confirm');
+        var cancelBtn = document.getElementById('modal-cancel');
+
+        requestAnimationFrame(function () {
+          modal.classList.add('active');
+        });
+
+        confirmBtn.addEventListener('click', function () {
+          location.href = '/index2026.html';
+        });
+
+        cancelBtn.addEventListener('click', function () {
+          modal.classList.remove('active');
+        });
+      })();
+    </script>
   </body>
 </html>

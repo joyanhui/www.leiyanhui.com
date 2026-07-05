@@ -1054,6 +1054,17 @@ li.header-menu-item a {
     display: inline-block;
 }
 
+.header-item-high a {
+    color: #4FC3F7;
+    font-weight: 700;
+}
+
+.header-item-low a {
+    color: #777;
+    font-size: 0.85em;
+    padding: 10px 6px;
+}
+
 #header-lang-selector {
     float: right;
     margin-left: 1vw;
